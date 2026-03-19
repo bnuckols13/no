@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Art of No — DBT Interpersonal Effectiveness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --parchment:    #F5EDD8;
+      --parchment-dk: #EDE0C4;
+      --cream:        #FAF6EE;
+      --ink:          #2C2416;
+      --ink-lt:       #4A3F2F;
+      --slate:        #5C5040;
+      --gold:         #B8860B;
+      --gold-lt:      #D4A017;
+      --gold-pale:    #F0D080;
+      --terracotta:   #C45C2E;
+      --terracotta-lt:#D4784A;
+      --sage:         #6B7C5C;
+      --sage-lt:      #8A9E78;
+      --teal:         #4A8080;
+      --teal-lt:      #6AA8A8;
+      --rust:         #9C3A1A;
+
+      --grad-gold:     linear-gradient(135deg, #B8860B 0%, #D4A017 100%);
+      --grad-terra:    linear-gradient(135deg, #C45C2E 0%, #D4784A 100%);
+      --grad-sage:     linear-gradient(135deg, #6B7C5C 0%, #8A9E78 100%);
+      --grad-teal:     linear-gradient(135deg, #4A8080 0%, #6AA8A8 100%);
+      --grad-parchment:linear-gradient(135deg, #F5EDD8 0%, #EDE0C4 100%);
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 10% 10%, rgba(184,134,11,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 90%, rgba(196,92,46,0.06) 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8860B' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      min-height: 100vh;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── Floating orbs ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      animation: drift 25s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb1 { width:360px;height:360px;background:var(--gold);    top:-130px;right:-100px; }
+    .orb2 { width:440px;height:440px;background:var(--terracotta);bottom:-170px;left:-150px;animation-delay:-8s; }
+    .orb3 { width:280px;height:280px;background:var(--sage);    top:45%;right:5%;animation-delay:-15s; }
+
+    @keyframes drift {
+      0%,100% { transform:translate(0,0) scale(1); }
+      33%      { transform:translate(24px,-24px) scale(1.07); }
+      66%      { transform:translate(-16px,16px) scale(0.94); }
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      text-align: center;
+      margin-bottom: 2.2rem;
+    }
+    .header-rune {
+      font-size: 2.2rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      display: block;
+      margin-bottom: 0.6rem;
+      opacity: 0.75;
+    }
+    .site-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      margin-bottom: 0.3rem;
+    }
+    .site-header h1 span { color: var(--terracotta); }
+    .site-header .subtitle {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      color: var(--slate);
+      font-size: 1.15rem;
+    }
+
+    /* ── Progress ── */
+    .progress-wrap {
+      background: rgba(184,134,11,0.15);
+      border-radius: 10px;
+      height: 6px;
+      margin-bottom: 1.8rem;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--grad-gold);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    /* ── Nav pills ── */
+    .nav-pills {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .nav-pill {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      background: var(--parchment);
+      border: 1.5px solid rgba(184,134,11,0.25);
+      color: var(--slate);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .nav-pill:hover { background: var(--parchment-dk); color: var(--ink); transform:translateY(-1px); }
+    .nav-pill.active { background: var(--grad-gold); color: var(--parchment); border-color: transparent; }
+
+    /* ── Pages ── */
+    .page { display:none; animation: rise 0.5s ease; }
+    .page.active { display:block; }
+    @keyframes rise {
+      from { opacity:0; transform:translateY(16px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--parchment);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(184,134,11,0.2);
+      box-shadow: 0 6px 28px rgba(44,36,22,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content:'';
+      position:absolute; top:0;left:0;right:0;height:3px;
+      background: var(--grad-gold);
+    }
+    .card.terra::before  { background: var(--grad-terra); }
+    .card.sage::before   { background: var(--grad-sage); }
+    .card.teal::before   { background: var(--grad-teal); }
+
+    .card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .sym { color: var(--gold); font-size: 1.1rem; }
+    .sym.terra { color: var(--terracotta); }
+    .sym.sage  { color: var(--sage); }
+    .sym.teal  { color: var(--teal); }
+
+    .timing {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.82rem;
+      font-style: italic;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      background: rgba(184,134,11,0.12);
+      color: var(--gold);
+      margin-left: auto;
+    }
+    .timing.terra { background: rgba(196,92,46,0.1); color: var(--terracotta); }
+
+    /* ── Pass reminder ── */
+    .pass-bar {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      background: rgba(107,124,92,0.1);
+      border-left: 3px solid var(--sage);
+      padding: 0.7rem 1rem;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 1.3rem;
+      font-style: italic;
+      color: var(--slate);
+      font-size: 0.95rem;
+    }
+    .pass-bar .s { color: var(--sage); flex-shrink: 0; }
+
+    /* ── Check-in steps ── */
+    .checkin-step {
+      display: none;
+    }
+    .checkin-step.active { display: block; animation: rise 0.4s ease; }
+
+    .step-indicator {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .step-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(184,134,11,0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .step-dot.active { background: var(--gold); transform: scale(1.3); }
+    .step-dot.done   { background: rgba(184,134,11,0.5); }
+
+    /* ── Chip selectors ── */
+    .chip-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .chip {
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      background: var(--parchment-dk);
+      border: 1.5px solid rgba(184,134,11,0.2);
+      color: var(--slate);
+      cursor: pointer;
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .chip:hover { border-color: var(--gold); color: var(--ink); }
+    .chip.sel   { background: var(--grad-gold); color: var(--parchment); border-color: transparent; }
+    .chip.terra.sel { background: var(--grad-terra); }
+    .chip.sage.sel  { background: var(--grad-sage); }
+
+    /* ── Polyvagal selector ── */
+    .pvz-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.7rem;
+    }
+    .pvz-card {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1.5px solid rgba(184,134,11,0.15);
+      background: var(--cream);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+    .pvz-card:hover { transform:translateY(-2px); border-color: var(--gold); }
+    .pvz-card.sel   { background: var(--grad-gold); color: var(--parchment); border-color: transparent; }
+    .pvz-card.sel.terra { background: var(--grad-terra); }
+    .pvz-card.sel.sage  { background: var(--grad-sage); }
+    .pvz-card .pvz-name { font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing:0.04em; margin-bottom: 0.3rem; }
+    .pvz-card .pvz-desc { font-size: 0.82rem; line-height: 1.4; opacity: 0.85; }
+
+    /* ── Text inputs ── */
+    .field-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.07em;
+      color: var(--slate);
+      display: block;
+      margin-bottom: 0.4rem;
+      margin-top: 1.1rem;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid rgba(184,134,11,0.25);
+      border-radius: 10px;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      background: var(--cream);
+      color: var(--ink);
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+    textarea:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.08);
+    }
+    textarea { min-height: 90px; }
+
+    /* ── Dialectic bridge ── */
+    .dialectic {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.4rem 0 0.4rem;
+      flex-wrap: wrap;
+    }
+    .dialectic-side {
+      flex: 1;
+      min-width: 180px;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      background: var(--cream);
+      border: 1px solid rgba(184,134,11,0.2);
+    }
+    .dialectic-side h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .dialectic-side p { font-size: 0.95rem; color: var(--slate); line-height: 1.55; }
+    .dialectic-amp {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── Info blocks ── */
+    .info-block {
+      padding: 1.1rem 1.3rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .info-block h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.6rem;
+    }
+    .info-block ul { list-style: none; color: var(--slate); line-height: 1.9; }
+    .info-block ul li::before { content: "◆ "; font-size: 0.7rem; }
+
+    .info-block.gold    { background: rgba(184,134,11,0.08); }
+    .info-block.gold h3 { color: var(--gold); }
+    .info-block.gold ul li::before { color: var(--gold); }
+
+    .info-block.terra    { background: rgba(196,92,46,0.08); }
+    .info-block.terra h3 { color: var(--terracotta); }
+    .info-block.terra ul li::before { color: var(--terracotta); }
+
+    .info-block.sage    { background: rgba(107,124,92,0.09); }
+    .info-block.sage h3 { color: var(--sage); }
+    .info-block.sage ul li::before { color: var(--sage); }
+
+    .info-block.teal    { background: rgba(74,128,128,0.09); }
+    .info-block.teal h3 { color: var(--teal); }
+    .info-block.teal ul li::before { color: var(--teal); }
+
+    /* ── Core message box ── */
+    .core-msg {
+      background: linear-gradient(135deg, rgba(184,134,11,0.07), rgba(196,92,46,0.07));
+      border-radius: 12px;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid rgba(184,134,11,0.2);
+      color: var(--slate);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+    .core-msg strong { color: var(--terracotta); }
+
+    /* ── Expandable sections ── */
+    .expandable { border-radius: 12px; overflow: hidden; border: 1px solid rgba(184,134,11,0.18); margin-bottom: 1rem; }
+    .exp-header {
+      padding: 0.9rem 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--cream);
+      transition: background 0.2s;
+    }
+    .exp-header:hover { background: var(--parchment-dk); }
+    .exp-header h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-lt);
+    }
+    .exp-icon { color: var(--gold); font-size: 1.2rem; transition: transform 0.3s; }
+    .exp-icon.open { transform: rotate(45deg); }
+    .exp-body { display: none; padding: 1.2rem; background: rgba(250,246,238,0.6); }
+    .exp-body.open { display: block; animation: rise 0.3s ease; }
+
+    /* ── Intensity scale ── */
+    .intensity-scale {
+      display: flex;
+      gap: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(184,134,11,0.2);
+      margin-top: 0.8rem;
+    }
+    .intensity-btn {
+      flex: 1;
+      padding: 0.8rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      background: var(--cream);
+      border: none;
+      border-right: 1px solid rgba(184,134,11,0.15);
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      color: var(--slate);
+      transition: all 0.2s;
+    }
+    .intensity-btn:last-child { border-right: none; }
+    .intensity-btn:hover { background: var(--parchment-dk); }
+    .intensity-btn.sel { background: var(--grad-terra); color: var(--parchment); }
+    .intensity-btn .int-num { display: block; font-size: 1.2rem; margin-bottom: 0.2rem; }
+
+    /* ── Scenario cards ── */
+    .scenario-arena {
+      min-height: 200px;
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 1.5rem;
+      border: 1.5px solid rgba(184,134,11,0.2);
+      position: relative;
+      margin: 1rem 0;
+    }
+    .scenario-card {
+      display: none;
+      animation: rise 0.4s ease;
+    }
+    .scenario-card.active { display: block; }
+    .scenario-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(196,92,46,0.12);
+      color: var(--terracotta);
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+    .scenario-text {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--ink-lt);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .scenario-barrier {
+      font-size: 0.9rem;
+      color: var(--slate);
+      padding: 0.7rem 1rem;
+      background: rgba(184,134,11,0.06);
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+    }
+    .scenario-counter {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      color: var(--slate);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Practice textarea ── */
+    .practice-panel {
+      background: var(--parchment-dk);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      margin-top: 1rem;
+    }
+    .practice-panel h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.07em;
+      color: var(--terracotta);
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── No ladder ── */
+    .no-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(184,134,11,0.2);
+      margin-top: 0.8rem;
+    }
+    .ladder-rung {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.3rem;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(184,134,11,0.12);
+      transition: background 0.2s;
+    }
+    .ladder-rung:last-child { border-bottom: none; }
+    .ladder-rung:hover { background: var(--parchment); }
+    .rung-level {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .rung-soft  { background: rgba(107,124,92,0.15); color: var(--sage); }
+    .rung-firm  { background: rgba(184,134,11,0.15); color: var(--gold); }
+    .rung-clear { background: rgba(196,92,46,0.15); color: var(--terracotta); }
+    .rung-hard  { background: rgba(156,58,26,0.15); color: var(--rust); }
+    .rung-body h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--ink-lt);
+      margin-bottom: 0.3rem;
+    }
+    .rung-body p { font-size: 0.93rem; color: var(--slate); line-height: 1.6; }
+    .rung-body .example {
+      font-style: italic;
+      color: var(--ink-lt);
+      margin-top: 0.4rem;
+      font-size: 0.92rem;
+    }
+
+    /* ── Affirmations ── */
+    .affirm-list { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
+    .affirm-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--cream);
+      border-radius: 10px;
+      border: 1px solid rgba(184,134,11,0.15);
+      font-size: 1rem;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+    .affirm-sym { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+
+    /* ── Integration output ── */
+    .integration-output {
+      display: none;
+      background: var(--parchment);
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      border: 1.5px solid rgba(184,134,11,0.3);
+      margin-top: 1.5rem;
+      animation: rise 0.5s ease;
+    }
+    .integration-output.show { display: block; }
+    .output-section {
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      background: var(--cream);
+      margin-bottom: 0.9rem;
+    }
+    .output-section h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.07em;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .output-section p { font-size: 0.97rem; color: var(--slate); line-height: 1.65; }
+
+    /* ── Facilitator toggle ── */
+    .fac-wrap { margin-top: 1.1rem; border-radius: 10px; overflow: hidden; }
+    .fac-btn {
+      width: 100%;
+      background: rgba(74,128,128,0.1);
+      border: none;
+      padding: 0.75rem 1.1rem;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+    .fac-btn:hover { background: rgba(74,128,128,0.17); }
+    .fac-content {
+      display: none;
+      padding: 0.9rem 1.1rem;
+      background: rgba(74,128,128,0.07);
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+    .fac-content.open { display: block; }
+
+    /* ── Buttons ── */
+    .btn-row {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .btn-row.right { justify-content: flex-end; }
+    .btn-primary {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.07em;
+      padding: 0.7rem 1.8rem;
+      background: var(--grad-gold);
+      color: var(--cream);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(184,134,11,0.28);
+      transition: all 0.25s ease;
+    }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(184,134,11,0.38); }
+    .btn-secondary {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.07em;
+      padding: 0.7rem 1.8rem;
+      background: var(--parchment-dk);
+      color: var(--ink-lt);
+      border: 1.5px solid rgba(184,134,11,0.3);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-secondary:hover { background: var(--parchment); transform:translateY(-2px); }
+    .btn-terra {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.07em;
+      padding: 0.7rem 1.8rem;
+      background: var(--grad-terra);
+      color: var(--cream);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(196,92,46,0.25);
+      transition: all 0.25s ease;
+    }
+    .btn-terra:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(196,92,46,0.35); }
+
+    /* ── Discussion cards ── */
+    .disc-list { display: flex; flex-direction: column; gap: 0.9rem; }
+    .disc-card {
+      padding: 1rem 1.3rem;
+      background: var(--cream);
+      border-radius: 12px;
+      border-left: 4px solid var(--gold);
+      color: var(--slate);
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+    .disc-card.terra { border-color: var(--terracotta); }
+    .disc-card.sage  { border-color: var(--sage); }
+    .disc-card .q-tag {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+      background: rgba(184,134,11,0.12);
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .disc-card.terra .q-tag { background: rgba(196,92,46,0.1); color: var(--terracotta); }
+    .disc-card.sage  .q-tag { background: rgba(107,124,92,0.12); color: var(--sage); }
+
+    /* ── Closing script ── */
+    .closing-script {
+      background: linear-gradient(135deg, rgba(184,134,11,0.07), rgba(196,92,46,0.05));
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      border: 1px solid rgba(184,134,11,0.2);
+      font-style: italic;
+      color: var(--slate);
+      line-height: 1.9;
+    }
+    .closing-script strong { color: var(--terracotta); font-style: normal; font-family: 'Cinzel', serif; font-size: 0.92em; letter-spacing: 0.03em; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--slate);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+    footer a { color: var(--teal); font-style: normal; text-decoration: none; }
+
+    @media (max-width: 680px) {
+      .site-header h1 { font-size: 1.9rem; }
+      .container { padding: 1.2rem 1rem; }
+      .card { padding: 1.4rem 1.2rem; }
+      .dialectic { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="site-header">
+    <span class="header-rune">ᚾ &nbsp; ᛟ &nbsp; ᚾ</span>
+    <h1>The Art of <span>No</span></h1>
+    <p class="subtitle">DBT Interpersonal Effectiveness — Adults &nbsp;·&nbsp; Center for Discovery</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap">
+    <div class="progress-fill" id="progressFill" style="width:20%"></div>
+  </div>
+
+  <!-- Nav -->
+  <div class="nav-pills">
+    <button class="nav-pill active" onclick="goTo(0)">Opening</button>
+    <button class="nav-pill"        onclick="goTo(1)">The Yes Trap</button>
+    <button class="nav-pill"        onclick="goTo(2)">The Toolkit</button>
+    <button class="nav-pill"        onclick="goTo(3)">Practice</button>
+    <button class="nav-pill"        onclick="goTo(4)">Closing</button>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- PAGE 0 · OPENING / CHECK-IN                   -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="page active" id="page0">
+
+    <div class="card">
+      <h2><span class="sym">◈</span> Welcome &amp; Arrival <span class="timing">8–10 min</span></h2>
+
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1.1rem;">
+        Today's session is about one of the most underestimated skills in DBT — the ability to decline, 
+        to hold a boundary, to say no without collapsing into guilt or apology. 
+        We'll look at why no is hard, what gets in the way, and how to say it clearly 
+        without burning a relationship down.
+      </p>
+
+      <div class="pass-bar">
+        <span class="s">◇</span>
+        <div>Passes are always available — at any question, at any point. Listening is full participation.</div>
+      </div>
+
+      <div class="fac-wrap">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator opening script</button>
+        <div class="fac-content">
+          "Welcome, everyone. I want to start by naming something we don't usually talk about directly: 
+          most of us were never taught how to say no. We were taught how to be helpful, how to be agreeable, 
+          how to keep things smooth. And there are real reasons for that — relationships matter, 
+          approval has kept people safe. But somewhere in that training, a lot of us lost access to 
+          a fundamental skill. Today we're going to get it back, carefully and honestly."
+        </div>
+      </div>
+    </div>
+
+    <!-- Rose / Bud / Thorn -->
+    <div class="card sage">
+      <h2><span class="sym sage">◆</span> Rose / Bud / Thorn <span class="timing">5–7 min</span></h2>
+
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1rem;">
+        Go around the room. One of the three — whatever fits where you are today. One sentence is enough.
+      </p>
+
+      <div class="pass-bar">
+        <span class="s">◇</span>
+        <div>Pass is always available. You can name which one you'd pick without explaining it.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:0.5rem;">
+
+        <div style="padding:1.2rem;border-radius:14px;background:rgba(196,92,46,0.09);text-align:center;">
+          <div style="font-size:1.5rem;color:var(--terracotta);margin-bottom:0.45rem;">◆</div>
+          <h4 style="font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:0.07em;color:var(--terracotta);margin-bottom:0.4rem;">Rose</h4>
+          <p style="font-size:0.88rem;color:var(--slate);line-height:1.55;">A moment recently where you held a limit — or someone respected yours — and it actually felt okay.</p>
+        </div>
+
+        <div style="padding:1.2rem;border-radius:14px;background:rgba(107,124,92,0.1);text-align:center;">
+          <div style="font-size:1.5rem;color:var(--sage);margin-bottom:0.45rem;">◇</div>
+          <h4 style="font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:0.07em;color:var(--sage);margin-bottom:0.4rem;">Bud</h4>
+          <p style="font-size:0.88rem;color:var(--slate);line-height:1.55;">A limit or boundary you're trying to tend to right now — something you can see but haven't said yet.</p>
+        </div>
+
+        <div style="padding:1.2rem;border-radius:14px;background:rgba(184,134,11,0.08);text-align:center;">
+          <div style="font-size:1.5rem;color:var(--gold);margin-bottom:0.45rem;">△</div>
+          <h4 style="font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:0.07em;color:var(--gold);margin-bottom:0.4rem;">Thorn</h4>
+          <p style="font-size:0.88rem;color:var(--slate);line-height:1.55;">A moment where you said yes when part of you meant no — and you've been carrying it since.</p>
+        </div>
+
+      </div>
+
+      <!-- Bridge question -->
+      <div style="margin-top:1.4rem;padding:1.1rem 1.3rem;background:var(--cream);border-radius:12px;border-left:4px solid var(--terracotta);">
+        <span style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--terracotta);display:inline-block;margin-bottom:0.5rem;">Bridge</span>
+        <p style="color:var(--slate);line-height:1.75;font-size:0.98rem;">
+          Is there a relationship or situation in your life right now where your yes and your no feel out of alignment — where what you keep agreeing to doesn't quite match what you actually want?
+        </p>
+      </div>
+
+      <div class="fac-wrap" style="margin-top:1rem;">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator note</button>
+        <div class="fac-content">
+          Keep this round moving — one sentence per person, pass is fine. The bridge question is optional; 
+          you can ask it as a full-group opener or just let the Thorn responses carry it implicitly. 
+          Note who names a Thorn or a Bud — those are the people most likely to have live material 
+          for the practice scenarios later. You don't need to call that out now; just hold it.
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-step check-in -->
+    <div class="card">
+      <h2><span class="sym">◉</span> Check-In <span class="timing">10–12 min</span></h2>
+
+      <div class="step-indicator" id="stepDots"></div>
+
+      <!-- Step 1: Breath -->
+      <div class="checkin-step active" id="step0">
+        <h3 style="font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:0.06em;color:var(--gold);margin-bottom:0.8rem;">I — Breath Anchor</h3>
+        <p style="color:var(--slate);line-height:1.8;margin-bottom:1rem;">
+          Take three full breaths before anything else. Exhale longer than you inhale. 
+          Let the room settle around you.
+        </p>
+        <p style="color:var(--ink-lt);font-style:italic;font-size:0.97rem;margin-bottom:1rem;">
+          When you're ready, bring one hand to your chest. Notice whether you feel any tension there — 
+          even the small kind. That's information.
+        </p>
+        <div class="btn-row right"><button class="btn-primary" onclick="stepTo(1)">Continue →</button></div>
+      </div>
+
+      <!-- Step 2: Body -->
+      <div class="checkin-step" id="step1">
+        <h3 style="font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:0.06em;color:var(--gold);margin-bottom:0.8rem;">II — Body Scan</h3>
+        <p style="color:var(--slate);line-height:1.8;margin-bottom:0.7rem;">
+          Scan slowly — head, jaw, throat, shoulders, chest, gut, hands. Where do you notice anything right now?
+        </p>
+        <div class="chip-group" id="bodyChips">
+          <span class="chip" onclick="toggleChip(this)">Head / forehead</span>
+          <span class="chip" onclick="toggleChip(this)">Jaw / throat</span>
+          <span class="chip" onclick="toggleChip(this)">Shoulders</span>
+          <span class="chip" onclick="toggleChip(this)">Chest</span>
+          <span class="chip" onclick="toggleChip(this)">Stomach / gut</span>
+          <span class="chip" onclick="toggleChip(this)">Hands</span>
+          <span class="chip" onclick="toggleChip(this)">Legs / feet</span>
+          <span class="chip" onclick="toggleChip(this)">General tension</span>
+          <span class="chip" onclick="toggleChip(this)">General calm</span>
+          <span class="chip" onclick="toggleChip(this)">Numb / flat</span>
+        </div>
+        <label class="field-label">One word or phrase for your internal state right now:</label>
+        <input type="text" id="internalState" placeholder="e.g. foggy, keyed up, still, heavy...">
+        <div class="btn-row right">
+          <button class="btn-secondary" onclick="stepTo(0)">← Back</button>
+          <button class="btn-primary" onclick="stepTo(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Polyvagal zone -->
+      <div class="checkin-step" id="step2">
+        <h3 style="font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:0.06em;color:var(--gold);margin-bottom:0.8rem;">III — Nervous System Zone</h3>
+        <p style="color:var(--slate);line-height:1.8;margin-bottom:0.7rem;">Where does your system feel like it's running right now?</p>
+        <div class="pvz-grid">
+          <div class="pvz-card terra" onclick="selectPvz(this,'terra')">
+            <div class="pvz-name">Charged Up</div>
+            <div class="pvz-desc">Alert, activated, anxious, restless, hard to slow down</div>
+          </div>
+          <div class="pvz-card" onclick="selectPvz(this,'')">
+            <div class="pvz-name">Window of Tolerance</div>
+            <div class="pvz-desc">Present, regulated, able to think and feel at the same time</div>
+          </div>
+          <div class="pvz-card sage" onclick="selectPvz(this,'sage')">
+            <div class="pvz-name">Pulled Down</div>
+            <div class="pvz-desc">Low energy, numb, flat, hard to access feeling</div>
+          </div>
+          <div class="pvz-card" onclick="selectPvz(this,'')">
+            <div class="pvz-name">Mixed / Hard to Name</div>
+            <div class="pvz-desc">Something in between, or shifting between states</div>
+          </div>
+        </div>
+        <div class="btn-row right">
+          <button class="btn-secondary" onclick="stepTo(1)">← Back</button>
+          <button class="btn-primary" onclick="stepTo(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Emotions -->
+      <div class="checkin-step" id="step3">
+        <h3 style="font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:0.06em;color:var(--gold);margin-bottom:0.8rem;">IV — Emotion Check</h3>
+        <p style="color:var(--slate);line-height:1.8;margin-bottom:0.7rem;">What emotion or emotional quality is most present for you right now?</p>
+        <div class="chip-group" id="emotionChips">
+          <span class="chip" onclick="toggleChip(this)">Anxious</span>
+          <span class="chip" onclick="toggleChip(this)">Frustrated</span>
+          <span class="chip" onclick="toggleChip(this)">Sad</span>
+          <span class="chip" onclick="toggleChip(this)">Calm</span>
+          <span class="chip" onclick="toggleChip(this)">Tired</span>
+          <span class="chip" onclick="toggleChip(this)">Guarded</span>
+          <span class="chip" onclick="toggleChip(this)">Hopeful</span>
+          <span class="chip" onclick="toggleChip(this)">Numb</span>
+          <span class="chip" onclick="toggleChip(this)">Irritable</span>
+          <span class="chip" onclick="toggleChip(this)">Okay</span>
+          <span class="chip terra" onclick="toggleChip(this)">Resentful</span>
+          <span class="chip terra" onclick="toggleChip(this)">People-please-y</span>
+          <span class="chip terra" onclick="toggleChip(this)">Braced</span>
+        </div>
+        <div class="btn-row right">
+          <button class="btn-secondary" onclick="stepTo(2)">← Back</button>
+          <button class="btn-primary" onclick="stepTo(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Bridge question -->
+      <div class="checkin-step" id="step4">
+        <h3 style="font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:0.06em;color:var(--gold);margin-bottom:0.8rem;">V — Bridge Question</h3>
+        <div class="disc-card terra" style="margin-bottom:1rem;">
+          <div class="q-tag" style="background:rgba(196,92,46,0.1);color:var(--terracotta);">Opening</div>
+          <p>Is there a situation in your life right now where you've been saying yes when part of you means no? You don't have to name it — just notice whether it's there.</p>
+        </div>
+        <label class="field-label">Optional — anything you want to bring into the room today (one word or sentence is enough):</label>
+        <input type="text" id="bridgeInput" placeholder="Or pass — listening is enough">
+
+        <div class="dialectic">
+          <div class="dialectic-side">
+            <h4>Saying No Is Legitimate</h4>
+            <p>Your limits deserve language. Having needs doesn't make you a burden.</p>
+          </div>
+          <div class="dialectic-amp">&</div>
+          <div class="dialectic-side">
+            <h4>Relationships Still Matter</h4>
+            <p>How you say no matters — clarity and care can coexist.</p>
+          </div>
+        </div>
+
+        <div class="btn-row right"><button class="btn-primary" onclick="goTo(1)">The Yes Trap →</button></div>
+      </div>
+    </div><!-- /checkin card -->
+
+  </div><!-- /page0 -->
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- PAGE 1 · PSYCHOEDUCATION — THE YES TRAP        -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="page" id="page1">
+
+    <div class="card">
+      <h2><span class="sym terra">◈</span> Why No Is Hard</h2>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1rem;">
+        Difficulty saying no is not a character flaw, a weakness, or a lack of assertiveness. 
+        It's a learned pattern — and it usually made sense at some point.
+      </p>
+
+      <div class="core-msg">
+        <strong>The clinical picture:</strong> For most people who struggle with saying no, 
+        the problem isn't not knowing what they want. It's that saying no feels like it will cost 
+        something — the relationship, the approval, the safety of being seen as good. 
+        The brain treats "no" as a social threat. That's worth taking seriously.
+      </div>
+
+      <div class="info-block terra">
+        <h3>Common barriers in the room</h3>
+        <ul>
+          <li><strong>Guilt:</strong> "I'll feel terrible if I disappoint them"</li>
+          <li><strong>Urgency:</strong> They need me right now — I can't say no in this moment</li>
+          <li><strong>Fear of abandonment:</strong> If I say no, they'll leave, pull back, or punish me</li>
+          <li><strong>Resentment reversal:</strong> If I said yes when I meant no, I created debt — their neediness feels entitled now</li>
+          <li><strong>Competence assumption:</strong> "I can handle it" — yes is easier than explaining why you can't</li>
+          <li><strong>The overapology pattern:</strong> Saying sorry for having a limit before anyone even reacts</li>
+        </ul>
+      </div>
+
+      <div class="fac-wrap">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator note</button>
+        <div class="fac-content">
+          Pause here and ask the room: "Which of these hits closest for you right now?" 
+          Let one or two people respond — this is often where you'll hear someone name 
+          a family-of-origin pattern for the first time. That's material for the whole session.
+        </div>
+      </div>
+    </div>
+
+    <div class="card sage">
+      <h2><span class="sym sage">◉</span> What the Body Does</h2>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1rem;">
+        Before the words even form, the body is already reacting to "I should say no to this." 
+        Learning to read that signal is the first skill.
+      </p>
+
+      <div class="info-block sage">
+        <h3>Physical signatures of "yes when you mean no"</h3>
+        <ul>
+          <li>Chest tightening or sinking sensation as you agree</li>
+          <li>Relief when you imagine saying no — before guilt floods in</li>
+          <li>A flat, mechanical quality to your "yes" — it leaves your mouth but doesn't come from your gut</li>
+          <li>Shoulders dropping, breath shortening as you hear the request</li>
+          <li>A thought immediately following: "Why did I say that?"</li>
+          <li>Post-yes resentment that builds slowly over the next hours</li>
+        </ul>
+      </div>
+
+      <div class="core-msg">
+        The body often knows before the mind catches up. That flat, hollow yes — or that quick tight no that 
+        immediately gets overridden — is worth pausing on. It's not irrational. It's data.
+      </div>
+
+      <div class="fac-wrap">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator note</button>
+        <div class="fac-content">
+          Brief somatic check-in here if the group is ready: "Close your eyes for a moment. 
+          Bring to mind a recent situation where you said yes when some part of you meant no. 
+          Don't analyze it — just notice where in your body you feel something when you picture that. 
+          That sensation is what we're working with today."
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="sym">◆</span> The Cost of the Chronic Yes</h2>
+
+      <div class="info-block gold">
+        <h3>What accumulates over time</h3>
+        <ul>
+          <li>Resentment toward people you genuinely care about</li>
+          <li>Exhaustion that looks like depression but is really depletion</li>
+          <li>A growing sense of inauthenticity — "nobody knows the real me"</li>
+          <li>Relationships built on a version of you that can't actually sustain itself</li>
+          <li>Loss of trust in your own judgment — "I don't even know what I want anymore"</li>
+        </ul>
+      </div>
+
+      <div class="info-block teal">
+        <h3>What an effective no actually protects</h3>
+        <ul>
+          <li>Your capacity to actually be present when you do say yes</li>
+          <li>The honesty that real relationships depend on</li>
+          <li>Your self-respect — the foundation FAST is built on</li>
+          <li>The other person's ability to know what you actually feel</li>
+        </ul>
+      </div>
+
+      <div class="fac-wrap">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Discussion prompt</button>
+        <div class="fac-content">
+          Optional large group question before moving on: "Has there been a time when someone saying no to you 
+          clearly — without drama — actually felt okay? What made that possible?" 
+          This often opens up the idea that delivery and relationship context matter as much as the refusal itself.
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row right">
+      <button class="btn-secondary" onclick="goTo(0)">← Opening</button>
+      <button class="btn-primary"   onclick="goTo(2)">The Toolkit →</button>
+    </div>
+
+  </div><!-- /page1 -->
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- PAGE 2 · THE TOOLKIT                           -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="page" id="page2">
+
+    <div class="card">
+      <h2><span class="sym">◈</span> Saying No with DEAR MAN</h2>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1rem;">
+        DEAR MAN is built for making requests — but it works just as well for declining them. 
+        Most people skip the structure when saying no and go straight to apologizing. The structure prevents that.
+      </p>
+
+      <div class="expandable">
+        <div class="exp-header" onclick="toggleExp(this)">
+          <h3>◇ DEAR MAN Applied to Refusal</h3>
+          <span class="exp-icon">+</span>
+        </div>
+        <div class="exp-body">
+          <div class="no-ladder">
+            <div class="ladder-rung">
+              <span class="rung-level rung-soft">D</span>
+              <div class="rung-body">
+                <h4>Describe</h4>
+                <p>State the facts of what you're being asked, without drama or justification.</p>
+                <p class="example">"You're asking me to cover your shift this Saturday..."</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-soft">E</span>
+              <div class="rung-body">
+                <h4>Express</h4>
+                <p>Name what's true for you briefly — without over-explaining.</p>
+                <p class="example">"I have something I've already committed to that day."</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-firm">A</span>
+              <div class="rung-body">
+                <h4>Assert</h4>
+                <p>Say no clearly. Not "I'm not sure I can" — no. Without preamble.</p>
+                <p class="example">"I'm not going to be able to do that."</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-firm">R</span>
+              <div class="rung-body">
+                <h4>Reinforce</h4>
+                <p>Acknowledge what matters about the relationship, if appropriate. Not as a trade — as honesty.</p>
+                <p class="example">"I do want to help you find coverage — just not this time."</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-clear">M</span>
+              <div class="rung-body">
+                <h4>Mindful (Broken Record)</h4>
+                <p>If they push back, return to the no without escalating. Same words, calm tone.</p>
+                <p class="example">"I hear that it's hard. I still can't do Saturday." [Repeat calmly as needed.]</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-clear">A</span>
+              <div class="rung-body">
+                <h4>Appear Confident</h4>
+                <p>Body language holds the boundary too. Eye contact (or level gaze), voice steady, no nervous laughter, no "sorry sorry sorry."</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-hard">N</span>
+              <div class="rung-body">
+                <h4>Negotiate</h4>
+                <p>Only if you're willing. Offer an alternative — not as appeasement, but because you genuinely want to help in a different way.</p>
+                <p class="example">"I can't do Saturday, but I can text the group chat to see who's available."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fac-wrap">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator note</button>
+        <div class="fac-content">
+          The "Assert" step is where most people freeze. They've gotten through Describe and Express and then 
+          hedge: "I'm not sure I can..." or "It's just that..." Point this out directly — the no needs 
+          to be in a sentence, not implied. Ask the group: "What does it feel like in your body 
+          right before you actually say the word no?"
+        </div>
+      </div>
+    </div>
+
+    <div class="card terra">
+      <h2><span class="sym terra">◆</span> FAST: The Self-Respect Anchor</h2>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1rem;">
+        FAST is what keeps you from apologizing your way into yes. It's the skill that protects 
+        your integrity even when the pressure to cave is real.
+      </p>
+
+      <div class="expandable">
+        <div class="exp-header" onclick="toggleExp(this)">
+          <h3>◇ FAST in the Moment of Refusal</h3>
+          <span class="exp-icon">+</span>
+        </div>
+        <div class="exp-body">
+          <div class="no-ladder">
+            <div class="ladder-rung">
+              <span class="rung-level rung-clear">F</span>
+              <div class="rung-body">
+                <h4>Fair</h4>
+                <p>Be fair to yourself and them. Their request doesn't automatically outrank your limit. You're not obligated to explain your entire reasoning to be fair.</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-clear">A</span>
+              <div class="rung-body">
+                <h4>No Unnecessary Apologies</h4>
+                <p>The single most common breakdown point. Apologizing for having a limit, apologizing for being a person who has limits, apologizing preemptively before they've even reacted.</p>
+                <p class="example">Replace: "I'm so sorry, I feel terrible saying this, I know this isn't what you need..." <br>
+                With: "I can't do that." Full stop.</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-firm">S</span>
+              <div class="rung-body">
+                <h4>Stick to Values</h4>
+                <p>Know before the conversation what your actual limit is. People who are unclear on their own position get talked out of it. Know what matters and name it internally, even if you don't say it out loud.</p>
+              </div>
+            </div>
+            <div class="ladder-rung">
+              <span class="rung-level rung-firm">T</span>
+              <div class="rung-body">
+                <h4>Truthful</h4>
+                <p>Say something true. You don't owe them your whole inner world, but don't manufacture elaborate excuses that you have to maintain. "That doesn't work for me" is true. Start there.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card sage">
+      <h2><span class="sym sage">◉</span> The Graduated No</h2>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:0.8rem;">
+        Not every no needs to be the same intensity. Matching the intensity of your refusal to the situation 
+        is its own skill — and it's worth being deliberate about.
+      </p>
+
+      <div class="no-ladder">
+        <div class="ladder-rung">
+          <span class="rung-level rung-soft">Soft</span>
+          <div class="rung-body">
+            <h4>The Gentle Redirect</h4>
+            <p>For low-stakes requests in relationships where goodwill is solid. Offers something in return. The door stays open.</p>
+            <p class="example">"That timing doesn't work for me — could we do Thursday instead?"</p>
+          </div>
+        </div>
+        <div class="ladder-rung">
+          <span class="rung-level rung-firm">Firm</span>
+          <div class="rung-body">
+            <h4>The Clear Decline</h4>
+            <p>The limit is real and stated directly. Doesn't negotiate. Still warm in tone. No apology, no explanation debt.</p>
+            <p class="example">"I'm not going to be able to help with that." [Said once, calmly.]</p>
+          </div>
+        </div>
+        <div class="ladder-rung">
+          <span class="rung-level rung-clear">Clear</span>
+          <div class="rung-body">
+            <h4>The Repeated No</h4>
+            <p>For situations where the first no wasn't honored. Broken record. No escalation, no new reasons — the same no, the same tone, again.</p>
+            <p class="example">"I understand you're frustrated. I still can't do that." [Repeat as needed.]</p>
+          </div>
+        </div>
+        <div class="ladder-rung">
+          <span class="rung-level rung-hard">Hard</span>
+          <div class="rung-body">
+            <h4>The Boundary with Consequence</h4>
+            <p>When limits have been repeatedly crossed. States what you will do — not what you'll make them do. Said once. Followed through.</p>
+            <p class="example">"If this continues, I'll need to step back from this arrangement. I mean that."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fac-wrap">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator note</button>
+        <div class="fac-content">
+          Most clients who over-apologize are using a soft no in situations that need a firm one — 
+          and then escalating to a hard no when they finally snap, skipping firm and clear entirely. 
+          Ask the group: "Which level do you usually skip? Which do you go to too fast?"
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row right">
+      <button class="btn-secondary" onclick="goTo(1)">← The Yes Trap</button>
+      <button class="btn-primary"   onclick="goTo(3)">Practice →</button>
+    </div>
+
+  </div><!-- /page2 -->
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- PAGE 3 · PRACTICE                              -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="page" id="page3">
+
+    <div class="card">
+      <h2><span class="sym terra">◈</span> Scenario Practice <span class="timing terra">18–22 min</span></h2>
+
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:0.8rem;">
+        Draw a scenario. Decide which level of no fits. Practice the words out loud — 
+        or write what you'd actually say.
+      </p>
+
+      <div class="pass-bar">
+        <span class="s">◇</span>
+        <div>You can pass on any scenario. You can observe another person work through it instead. Both count.</div>
+      </div>
+
+      <!-- Scenario arena -->
+      <div class="scenario-arena" id="scenarioArena">
+        <div class="scenario-counter" id="scenarioCounter">— / —</div>
+
+        <div class="scenario-card active" id="sc0">
+          <span class="scenario-tag">Workplace</span>
+          <p class="scenario-text">
+            Your supervisor asks you to stay two hours late — again — with the implication that 
+            saying no will reflect poorly on your commitment. You've stayed late four times this month 
+            and have plans tonight you actually care about.
+          </p>
+          <div class="scenario-barrier">
+            <strong>Common barrier here:</strong> Competence trap — "I can technically do it, so I should."
+          </div>
+        </div>
+
+        <div class="scenario-card" id="sc1">
+          <span class="scenario-tag">Family</span>
+          <p class="scenario-text">
+            A family member calls with a crisis that, on closer inspection, is a chronic pattern 
+            you've helped them through dozens of times. They need money again. You've given it before 
+            and it hasn't changed anything.
+          </p>
+          <div class="scenario-barrier">
+            <strong>Common barrier here:</strong> Guilt and obligation — "They're family. What kind of person says no to family?"
+          </div>
+        </div>
+
+        <div class="scenario-card" id="sc2">
+          <span class="scenario-tag">Friendship</span>
+          <p class="scenario-text">
+            A close friend asks you to be in their wedding party. You care about them and want to 
+            support them. You also know the time and financial commitment will genuinely strain you 
+            over the next year.
+          </p>
+          <div class="scenario-barrier">
+            <strong>Common barrier here:</strong> Relationship-attachment fear — "If I say no, they'll think I don't care about them."
+          </div>
+        </div>
+
+        <div class="scenario-card" id="sc3">
+          <span class="scenario-tag">Recovery</span>
+          <p class="scenario-text">
+            Someone in your life — not in treatment themselves — invites you to a social event 
+            where you know there will be substances. They're minimizing: "It's not a big deal, 
+            you'll be fine."
+          </p>
+          <div class="scenario-barrier">
+            <strong>Common barrier here:</strong> Not wanting to explain or justify your recovery to someone who doesn't get it.
+          </div>
+        </div>
+
+        <div class="scenario-card" id="sc4">
+          <span class="scenario-tag">Romantic / Partner</span>
+          <p class="scenario-text">
+            Your partner wants to talk through something emotionally loaded — tonight. 
+            You've just come off a hard day and you genuinely don't have the capacity right now. 
+            Saying "not tonight" feels like you're abandoning them.
+          </p>
+          <div class="scenario-barrier">
+            <strong>Common barrier here:</strong> Urgency override — their emotional need feels like a command.
+          </div>
+        </div>
+
+        <div class="scenario-card" id="sc5">
+          <span class="scenario-tag">Self</span>
+          <p class="scenario-text">
+            You've made a commitment to yourself — sleep, exercise, time alone — and someone 
+            is asking for the time slot you'd protected. The request is reasonable. 
+            The commitment to yourself is easier to break than the one to them.
+          </p>
+          <div class="scenario-barrier">
+            <strong>Common barrier here:</strong> Self-deprioritization — your own limits feel optional in a way other people's don't.
+          </div>
+        </div>
+
+      </div><!-- /scenario arena -->
+
+      <div style="display:flex;gap:0.8rem;margin-top:1rem;flex-wrap:wrap;">
+        <button class="btn-secondary" onclick="prevScenario()">← Previous</button>
+        <button class="btn-terra" onclick="nextScenario()">Next Scenario →</button>
+      </div>
+
+      <!-- Intensity selector -->
+      <h3 style="font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:0.07em;color:var(--ink-lt);margin:1.4rem 0 0.4rem;">What level of no fits this situation?</h3>
+      <div class="intensity-scale">
+        <button class="intensity-btn" onclick="selectIntensity(this)"><span class="int-num">〰</span>Soft</button>
+        <button class="intensity-btn" onclick="selectIntensity(this)"><span class="int-num">◆</span>Firm</button>
+        <button class="intensity-btn" onclick="selectIntensity(this)"><span class="int-num">◈</span>Clear</button>
+        <button class="intensity-btn" onclick="selectIntensity(this)"><span class="int-num">◉</span>Hard</button>
+      </div>
+
+      <!-- Practice area -->
+      <div class="practice-panel" style="margin-top:1.3rem;">
+        <h4>◇ Write Your No</h4>
+        <p style="color:var(--slate);font-size:0.93rem;margin-bottom:0.7rem;">Draft what you'd actually say — starting with the Assert step. No apology in the first sentence.</p>
+        <textarea id="practiceText" placeholder="Write it out. Start with the no — not with sorry..."></textarea>
+        <label class="field-label" style="margin-top:0.9rem;">What's the hardest part of saying this?</label>
+        <textarea id="hardPart" placeholder="Name the barrier..."></textarea>
+      </div>
+
+      <div class="fac-wrap" style="margin-top:1.2rem;">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator notes</button>
+        <div class="fac-content">
+          <strong>Sequence options:</strong><br>
+          Full group: Read a scenario, ask "what level of no does this need?" — hear a few answers, then ask someone to say it out loud.<br><br>
+          Pairs: Each person selects a scenario that feels personally relevant. Practice saying the no to their partner, then debrief what happened in their body while they said it.<br><br>
+          <strong>Watch for:</strong> People who write a no but can't say it aloud. The gap between the written and spoken version is clinically significant. 
+          The body loads the word "no" differently than it loads the text.
+        </div>
+      </div>
+    </div>
+
+    <div class="card teal">
+      <h2><span class="sym teal">◉</span> Large Group Discussion <span class="timing">10–12 min</span></h2>
+      <div class="disc-list">
+        <div class="disc-card">
+          <div class="q-tag">Warm-up</div>
+          <p>What happened in your body when you tried to say no out loud — even in practice?</p>
+        </div>
+        <div class="disc-card terra">
+          <div class="q-tag" style="background:rgba(196,92,46,0.1);color:var(--terracotta);">The barrier</div>
+          <p>Which level of no was hardest to land? Where did it break down — in the words, the tone, or something before the words?</p>
+        </div>
+        <div class="disc-card sage">
+          <div class="q-tag" style="background:rgba(107,124,92,0.12);color:var(--sage);">Turning point</div>
+          <p>Is there a situation in your life where you've been waiting to say no — where part of you already knows what you need to say?</p>
+        </div>
+        <div class="disc-card">
+          <div class="q-tag">Reframe</div>
+          <p>What would change — in a relationship, in your energy, in your sense of yourself — if you said no in one place you've been saying yes?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row right">
+      <button class="btn-secondary" onclick="goTo(2)">← Toolkit</button>
+      <button class="btn-primary"   onclick="goTo(4)">Closing →</button>
+    </div>
+
+  </div><!-- /page3 -->
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- PAGE 4 · CLOSING                              -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="page" id="page4">
+
+    <div class="card">
+      <h2><span class="sym">◆</span> Things Worth Carrying Out</h2>
+      <div class="affirm-list">
+        <div class="affirm-item">
+          <span class="affirm-sym">◆</span>
+          <div>Saying no is not a failure of generosity. It's an act of honesty — about your actual capacity, your actual limits, your actual self.</div>
+        </div>
+        <div class="affirm-item">
+          <span class="affirm-sym">◆</span>
+          <div>A clear no is often kinder than a hollow yes. People deserve to know where you actually stand.</div>
+        </div>
+        <div class="affirm-item">
+          <span class="affirm-sym">◆</span>
+          <div>You do not owe anyone an explanation that dismantles your own limit. "That doesn't work for me" is complete.</div>
+        </div>
+        <div class="affirm-item">
+          <span class="affirm-sym">◆</span>
+          <div>The guilt that arrives after a no is not evidence that the no was wrong. Guilt and wrongness are not the same thing.</div>
+        </div>
+        <div class="affirm-item">
+          <span class="affirm-sym">◆</span>
+          <div>Protecting your capacity to show up is part of showing up. The chronic yes depletes the very thing other people need from you.</div>
+        </div>
+        <div class="affirm-item">
+          <span class="affirm-sym">◆</span>
+          <div>You can practice this. The first no in a relationship where you've always said yes is the hardest. It gets more natural.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integration output -->
+    <div class="card terra">
+      <h2><span class="sym terra">◈</span> Your Integration Summary <span class="timing terra">5 min</span></h2>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1rem;">
+        Optional: Generate a brief reflection to take with you from today's session.
+      </p>
+
+      <label class="field-label">One situation where you'd like to practice saying no this week:</label>
+      <input type="text" id="intSituation" placeholder="It can be small — a small no is still a no...">
+
+      <label class="field-label">The barrier you expect to run into:</label>
+      <input type="text" id="intBarrier" placeholder="Guilt? Fear of reaction? Not finding the words?">
+
+      <label class="field-label">Which level of no fits, and one sentence you'd actually say:</label>
+      <input type="text" id="intWords" placeholder="Soft / Firm / Clear / Hard — and the words...">
+
+      <label class="field-label">One thing from today that landed:</label>
+      <input type="text" id="intLanding" placeholder="A concept, a phrase, something someone said...">
+
+      <div class="btn-row">
+        <button class="btn-primary" onclick="generateSummary()">Generate Summary</button>
+        <button class="btn-secondary" onclick="clearSummary()">Clear</button>
+      </div>
+
+      <div class="integration-output" id="integrationOutput">
+        <h3 style="font-family:'Cinzel',serif;font-size:1rem;letter-spacing:0.06em;color:var(--gold);margin-bottom:1rem;">◈ Your Reflection</h3>
+        <div class="output-section" id="outSituation"></div>
+        <div class="output-section" id="outBarrier"></div>
+        <div class="output-section" id="outWords"></div>
+        <div class="output-section" id="outLanding"></div>
+        <div style="margin-top:0.8rem;padding:0.9rem 1rem;background:rgba(184,134,11,0.07);border-radius:10px;border-left:3px solid var(--gold);">
+          <p style="font-style:italic;color:var(--slate);font-size:0.95rem;line-height:1.7;">
+            The next no you say in a real situation will feel like this one in practice: 
+            uncomfortable, and survivable. The discomfort is not a sign you're doing it wrong.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card sage">
+      <h2><span class="sym sage">✦</span> Closing Script <span class="timing">3–5 min</span></h2>
+      <div class="closing-script">
+        "We spent today looking at something that most people have been managing quietly — 
+        the gap between what you agree to and what you actually want to agree to. 
+        That gap has a cost. Today we named it, and we practiced something different.
+        <br><br>
+        I want to acknowledge that saying no — even in a practice scenario — takes something. 
+        The fact that you showed up and worked through it is real.
+        <br><br>
+        Before you leave: one word for how you're landing right now, or one thing you're taking with you.
+        <br><br>
+        <strong>Thank you for being honest in here today.</strong>"
+      </div>
+
+      <div style="margin-top:1.3rem;">
+        <p style="color:var(--slate);font-family:'Cinzel',serif;font-size:0.82rem;letter-spacing:0.07em;margin-bottom:0.7rem;">CHECK-OUT (one word or one sentence each)</p>
+        <div class="disc-card sage">
+          <div class="q-tag" style="background:rgba(107,124,92,0.12);color:var(--sage);">Check-out</div>
+          <p>One word for where you're landing — or one thing you're carrying out of the room.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card teal">
+      <h2><span class="sym teal">◉</span> Looking Ahead</h2>
+      <div class="info-block teal">
+        <h3>Natural next sessions in the adult DBT IE sequence</h3>
+        <ul>
+          <li><strong>Relationships Under Stress</strong> — when to use DEAR MAN vs. GIVE vs. FAST, and how to read the situation correctly</li>
+          <li><strong>Validation as a Skill</strong> — what it actually means to validate without caving, and how to hold your position while making someone feel heard</li>
+          <li><strong>Repair After Conflict</strong> — what to do when a no landed badly, or when a yes you didn't mean caused damage</li>
+        </ul>
+      </div>
+      <div class="fac-wrap">
+        <button class="fac-btn" onclick="toggleFac(this)">▶ Facilitator note</button>
+        <div class="fac-content">
+          This session often surfaces material that connects naturally to chain analysis 
+          (the chain of events that leads someone from noticing they want to say no 
+          to saying yes anyway) and to emotion regulation around guilt and obligation. 
+          Worth flagging for individual session follow-up if significant material came up.
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="goTo(3)">← Practice</button>
+    </div>
+
+  </div><!-- /page4 -->
+
+</div><!-- /container -->
+
+<footer>
+  <p>DBT Adult Group &nbsp;·&nbsp; Interpersonal Effectiveness &nbsp;·&nbsp; Facilitator: Brian Nuckols &nbsp;·&nbsp; Center for Discovery</p>
+  <p style="margin-top:0.4rem;">
+    If you are in crisis:
+    <a href="tel:988">988 Suicide &amp; Crisis Lifeline</a> &nbsp;·&nbsp;
+    <a href="tel:741741">Crisis Text Line: text HOME to 741741</a>
+  </p>
+</footer>
+
+<script>
+  /* ── Navigation ── */
+  const pages    = document.querySelectorAll('.page');
+  const pills    = document.querySelectorAll('.nav-pill');
+  const progFill = document.getElementById('progressFill');
+  const pct      = [20, 40, 60, 80, 100];
+
+  function goTo(i) {
+    pages.forEach((p, idx) => p.classList.toggle('active', idx === i));
+    pills.forEach((p, idx) => p.classList.toggle('active', idx === i));
+    progFill.style.width = pct[i] + '%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ── Check-in stepper ── */
+  const TOTAL_STEPS = 5;
+  let currentStep   = 0;
+
+  function buildDots() {
+    const container = document.getElementById('stepDots');
+    container.innerHTML = '';
+    for (let i = 0; i < TOTAL_STEPS; i++) {
+      const d = document.createElement('div');
+      d.className = 'step-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => stepTo(i);
+      container.appendChild(d);
+    }
+  }
+
+  function stepTo(n) {
+    document.getElementById('step' + currentStep).classList.remove('active');
+    currentStep = n;
+    document.getElementById('step' + currentStep).classList.add('active');
+    document.querySelectorAll('.step-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentStep);
+      d.classList.toggle('done', i < currentStep);
+    });
+  }
+
+  buildDots();
+
+  /* ── Chip toggles ── */
+  function toggleChip(el) {
+    el.classList.toggle('sel');
+  }
+
+  /* ── Polyvagal card selection ── */
+  function selectPvz(el, colorClass) {
+    el.closest('.pvz-grid').querySelectorAll('.pvz-card').forEach(c => {
+      c.classList.remove('sel', 'terra', 'sage');
+    });
+    el.classList.add('sel');
+    if (colorClass) el.classList.add(colorClass);
+  }
+
+  /* ── Expandable sections ── */
+  function toggleExp(header) {
+    const icon = header.querySelector('.exp-icon');
+    const body = header.nextElementSibling;
+    icon.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+
+  /* ── Facilitator toggle ── */
+  function toggleFac(btn) {
+    const content = btn.nextElementSibling;
+    content.classList.toggle('open');
+    btn.textContent = content.classList.contains('open')
+      ? btn.textContent.replace('▶', '▼')
+      : btn.textContent.replace('▼', '▶');
+  }
+
+  /* ── Scenario navigation ── */
+  const SCENARIO_COUNT = 6;
+  let currentScenario  = 0;
+
+  function updateScenario() {
+    document.querySelectorAll('.scenario-card').forEach((c, i) => {
+      c.classList.toggle('active', i === currentScenario);
+    });
+    document.getElementById('scenarioCounter').textContent =
+      (currentScenario + 1) + ' / ' + SCENARIO_COUNT;
+    // Clear practice fields on new scenario
+    document.getElementById('practiceText').value = '';
+    document.getElementById('hardPart').value     = '';
+    // Clear intensity selection
+    document.querySelectorAll('.intensity-btn').forEach(b => b.classList.remove('sel'));
+  }
+
+  function nextScenario() {
+    currentScenario = (currentScenario + 1) % SCENARIO_COUNT;
+    updateScenario();
+  }
+
+  function prevScenario() {
+    currentScenario = (currentScenario - 1 + SCENARIO_COUNT) % SCENARIO_COUNT;
+    updateScenario();
+  }
+
+  function selectIntensity(btn) {
+    document.querySelectorAll('.intensity-btn').forEach(b => b.classList.remove('sel'));
+    btn.classList.add('sel');
+  }
+
+  updateScenario();
+
+  /* ── Integration summary ── */
+  function generateSummary() {
+    const situation = document.getElementById('intSituation').value.trim();
+    const barrier   = document.getElementById('intBarrier').value.trim();
+    const words     = document.getElementById('intWords').value.trim();
+    const landing   = document.getElementById('intLanding').value.trim();
+
+    if (!situation && !barrier && !words && !landing) {
+      alert('Fill in at least one field to generate a summary.');
+      return;
+    }
+
+    const set = (id, label, val) => {
+      const el = document.getElementById(id);
+      el.style.display = val ? 'block' : 'none';
+      if (val) el.innerHTML = `<h4>${label}</h4><p>${val}</p>`;
+    };
+
+    set('outSituation', 'Where I want to practice this week', situation);
+    set('outBarrier',   'The barrier I expect',               barrier);
+    set('outWords',     'My no — level and language',          words);
+    set('outLanding',   'What landed today',                   landing);
+
+    document.getElementById('integrationOutput').classList.add('show');
+    document.getElementById('integrationOutput').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function clearSummary() {
+    ['intSituation','intBarrier','intWords','intLanding'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('integrationOutput').classList.remove('show');
+  }
+</script>
+</body>
+</html>
